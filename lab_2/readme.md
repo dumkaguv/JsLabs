@@ -29,19 +29,19 @@ import transactions from "./transactions.js";
 ### Реализация функций: 
 
 1. getUniqueTransactionTypes - возвращает массив уникальных типов транзакций.
-![](1.png)
+![](./screenshots/1.png)
 
 2. calculateTotalAmount - вычисляет сумму всех транзакций.
-![](2.png)
+![](./screenshots/2.png)
 
 3. findMostTransactionsMonth - возвращает месяц, в котором было больше всего транзакций.
-![](3.png)
+![](./screenshots/3.png)
 
 4. mostTransactionTypes - возвращает каких транзакций больше всего.
-![](4.png)
+![](./screenshots/4.png)
 
 5. findTransactionById - возвращает транзакцию по ее уникальному идентификатору (`id`).
-![](5.png)
+![](./screenshots/5.png)
 
 ### Ответы на контрольные вопросы:
 

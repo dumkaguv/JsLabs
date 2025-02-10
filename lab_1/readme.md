@@ -103,5 +103,7 @@
 ## 5. Использованные источники:
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
+
 https://learn.javascript.ru/variables
+
 https://www.w3schools.com/jsref/met_console_log.asp

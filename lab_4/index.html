@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventory</title>
+    <script src="./scripts/main.js" type="module"></script>
+    <link rel="stylesheet" href="./styles/index.css" />
+  </head>
+  <body>
+    <main class="container">
+      <div class="inventory-table-wrapper" data-js-inventory-table>
+        <button
+          class="button inventory-table__form-button"
+          type="button"
+          data-js-inventory-table-add-item-button
+        >
+          Добавить предмет
+        </button>
+
+        <table class="inventory-table">
+          <thead class="inventory-table__head">
+            <tr class="inventory-table__row">
+              <th class="inventory-table__header-cell">Название предмета</th>
+              <th class="inventory-table__header-cell">Категория</th>
+              <th class="inventory-table__header-cell">Редкость</th>
+              <th class="inventory-table__header-cell">Действие</th>
+              <th class="inventory-table__header-cell">Урон</th>
+            </tr>
+          </thead>
+          <tbody
+            class="inventory-table__body"
+            data-js-inventory-table-body
+          ></tbody>
+        </table>
+        <ul class="item-full-info" data-js-item-full-info>
+          <li>Название: <span data-js-item-full-info-name></span> </li>
+          <li>Категория: <span data-js-item-full-info-category></span> </li>
+          <li>Редкость: <span data-js-item-full-info-rarity></span> </li>
+          <li>Описание: <span data-js-item-full-info-description></span> </li>
+          <li>Урон: <span data-js-item-full-info-damage></span> </li>
+        </ul>
+        <div class="total-items">
+          Общее количество предметов в инвентаре:
+          <span class="total-items__count" data-js-total-items-count>0</span>
+        </div>
+      </div>
+    </main>
+    <div class="modal" data-js-modal>
+      <form class="modal__content" action="/" data-js-modal-content>
+        <div class="field">
+          <label for="name">* Название предмета: </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            pattern="^[^\d][A-Za-zА-Яа-яЁё\s]*$"
+            minlength="2"
+            title="Название должно начинаться с буквы и иметь минимум 2 символа."
+            placeholder="Введите название предмета..."
+            required
+          />
+        </div>
+        <div class="field">
+          <label for="category">* Категория: </label>
+          <select id="category" name="category" required>
+            <option value="" disabled selected>Выберите категорию...</option>
+            <option value="weapon">Оружие</option>
+            <option value="armor">Броня</option>
+            <option value="potion">Зелье</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="rarity">* Редкость: </label>
+          <select id="rarity" name="rarity" required>
+            <option value="" disabled selected>Выберите редкость...</option>
+            <option value="common">Обычное</option>
+            <option value="uncommon">Необычное</option>
+            <option value="rare">Редкое</option>
+            <option value="legendary">Легендарное</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="description">Описание: </label>
+          <input
+            id="description"
+            name="description"
+            type="text"
+            placeholder="Введите описание предмета..."
+          />
+        </div>
+        <div class="field">
+          <label for="damage">Урон: </label>
+          <input
+            id="damage"
+            name="damage"
+            type="number"
+            step="0.1"
+            placeholder="Введите урон предмета..."
+          />
+        </div>
+
+        <button
+          class="button modal__button-close"
+          type="button"
+          title="Close modal"
+          data-js-modal-button-close
+        >
+          X
+        </button>
+        <button
+          class="button modal__content-button-confirm"
+          type="button"
+          data-js-modal-content-button-submit
+        >
+          Добавить предмет
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

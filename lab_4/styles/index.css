@@ -1,0 +1,430 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+  */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+  */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+  */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+  */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+  */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Упрощаем работу с изображениями и видео
+  */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+  */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+    */
+  scrollbar-gutter: stable;
+}
+
+/**
+  Плавный скролл
+  */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+  Пригодится в большинстве ситуаций
+  (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+  min-height: 100%;
+  /**
+  Унифицированный интерлиньяж
+    */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+  */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+  */
+a,
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+  */
+:where([fill]:not([fill=none], [fill^=url])) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+  */
+:where([stroke]:not([stroke=none], [stroke^=url])) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+  */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+  */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+  */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root {
+  --color-light: #ffffff;
+  --color-dark: #141414;
+  --color-gray: #adadad;
+  --color-accent: #fbd437ec;
+  --color-red: #ff5500;
+  --color-green: #4eff37;
+  --container-width: 100rem;
+  --container-padding-x: 1rem;
+  --transition-duration: 0.2s;
+  --border: 0.0625rem solid var(--color-gray);
+}
+@media (width <= 90.06125rem) {
+  :root {
+    --container-width: 80rem;
+  }
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  -webkit-clip-path: inset(100%) !important;
+          clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+@media (width > 63.99875rem) {
+  .visible-tablet {
+    display: none !important;
+  }
+}
+
+@media (width <= 63.99875rem) {
+  .hidden-tablet {
+    display: none !important;
+  }
+}
+
+@media (width <= 47.99875rem) {
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+@media (width > 47.99875rem) {
+  .visible-mobile {
+    display: none !important;
+  }
+}
+
+body {
+  font-size: clamp(0.875rem, 0.8173076923rem + 0.2564102564dvw, 1.125rem);
+  color: var(--color-gray);
+  background-color: var(--color-dark);
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+:focus-visible {
+  outline: 0.125rem dashed var(--color-light);
+  outline-offset: 0.25rem;
+  transition-duration: 0s !important;
+}
+
+.button {
+  --size: 2rem;
+  width: var(--size);
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  padding: 0;
+  border: var(--border);
+  background-color: var(--color-red);
+  border-radius: 1rem;
+  color: var(--color-light);
+}
+@media (hover: hover) {
+  .button:hover {
+    background-color: color-mix(in srgb, var(--color-red), rgb(237, 237, 237) 10%);
+  }
+}
+@media (hover: none) {
+  .button:active {
+    background-color: color-mix(in srgb, var(--color-red), rgb(237, 237, 237) 10%);
+  }
+}
+
+.inventory-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3.125rem;
+  row-gap: 1.5625rem;
+}
+
+.inventory-table {
+  width: 62.5rem;
+  border: var(--border);
+}
+.inventory-table__header-cell {
+  padding: 0.9375rem;
+  font-size: clamp(0.875rem, 0.7884615385rem + 0.3846153846dvw, 1.25rem);
+  font-weight: 700;
+  color: var(--color-light);
+  border: var(--border);
+  text-align: start;
+}
+.inventory-table__row {
+  position: relative;
+  transition-duration: var(--transition-duration);
+}
+.inventory-table__row::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  content: "";
+  width: 100%;
+  height: 0.1875rem;
+  background-color: var(--color-red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-duration) ease-in-out;
+  z-index: 100;
+}
+.inventory-table__row.is-deleting .inventory-table__button-delete {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.inventory-table__row.is-deleting::after {
+  transform: scaleX(1);
+}
+.inventory-table__row.is-legendary {
+  background-color: var(--color-accent);
+  color: black;
+}
+.inventory-table__cell {
+  width: 12.5rem;
+  padding: 0.625rem;
+  border: var(--border);
+}
+.inventory-table__form-button {
+  background-color: var(--color-green);
+  border: none;
+  border-radius: 0.5rem;
+  width: 12.5rem;
+  padding: 1.25rem;
+}
+@media (hover: hover) {
+  .inventory-table__form-button:hover {
+    background-color: color-mix(in srgb, var(--color-green), rgb(237, 237, 237) 25%);
+  }
+}
+@media (hover: none) {
+  .inventory-table__form-button:active {
+    background-color: color-mix(in srgb, var(--color-green), rgb(237, 237, 237) 25%);
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+.modal__content {
+  position: relative;
+  display: grid;
+  row-gap: 0.625rem;
+  margin: 15% auto;
+  padding: 1.25rem;
+  width: 35rem;
+  background-color: var(--color-gray);
+  color: var(--color-light);
+}
+.modal__content-button-confirm {
+  background-color: var(--color-green);
+  border: none;
+  margin-top: 1.25rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 1.25rem;
+}
+@media (hover: hover) {
+  .modal__content-button-confirm:hover {
+    background-color: color-mix(in srgb, var(--color-green), rgb(237, 237, 237) 25%);
+  }
+}
+@media (hover: none) {
+  .modal__content-button-confirm:active {
+    background-color: color-mix(in srgb, var(--color-green), rgb(237, 237, 237) 25%);
+  }
+}
+.modal__button-close {
+  position: absolute;
+  right: -2.25rem;
+  top: -2.25rem;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 10.625rem 1fr;
+}
+
+.total-items {
+  margin-right: 46%;
+}
+.total-items__count {
+  color: rgb(140, 255, 0);
+}
+
+.item-full-info {
+  display: none;
+  row-gap: 0.1875rem;
+  background-color: rgb(75, 75, 75);
+  color: var(--color-light);
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+}/*# sourceMappingURL=index.css.map */

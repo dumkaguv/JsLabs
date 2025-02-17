@@ -22,26 +22,74 @@
 </html>
 ```
 
-#### Теперь в файле `main.js` имеет доступ к массиву transactions
+#### Теперь в файле `main.js` имеет доступ к массиву `transactions`
 ```javascript
 import transactions from "./transactions.js";
 ```
 ### Реализация функций: 
 
-1. getUniqueTransactionTypes - возвращает массив уникальных типов транзакций.
-![](./screenshots/1.png)
+1. `getUniqueTransactionTypes` - возвращает массив уникальных типов транзакций.
+    ![](./screenshots/1.png)
 
-2. calculateTotalAmount - вычисляет сумму всех транзакций.
-![](./screenshots/2.png)
+2. `calculateTotalAmount` - вычисляет сумму всех транзакций.
+    ![](./screenshots/2.png)
 
-3. findMostTransactionsMonth - возвращает месяц, в котором было больше всего транзакций.
-![](./screenshots/3.png)
+3. `calculateTotalAmountByDate(transactions, year, month, day)` [extra]
+- Вычисляет общую сумму транзакций за указанный год, месяц и день.
 
-4. mostTransactionTypes - возвращает каких транзакций больше всего.
-![](./screenshots/4.png)
+- Параметры `year`, `month` и `day` являются необязательными.
 
-5. findTransactionById - возвращает транзакцию по ее уникальному идентификатору (`id`).
-![](./screenshots/5.png)
+- В случае отсутствия одного из параметров, метод производит расчет по остальным.
+
+    ![](./screenshots/3.png)
+
+4. `getTransactionByType(transactions, type)` - Возвращает транзакции указанного типа (`debit` или `credit`).
+
+    ![](./screenshots/4.png)
+
+5. `getTransactionsInDateRange(transactions, startDate, endDate)` – Возвращает массив транзакций, проведенных в указанном диапазоне дат от `startDate` до `endDate`.
+
+    ![](./screenshots/5.png)
+
+6. `getTransactionsByMerchant(transactions, merchantName)` – Возвращает массив транзакций, совершенных с указанным `merchantName`.
+
+    ![](./screenshots/6.png)
+
+7. `calculateAverageTransactionAmount(transactions)` – Возвращает среднее значение транзакций.
+
+    ![](./screenshots/7.png)
+
+8. `getTransactionsByAmountRange(transactions, minAmount, maxAmount)` – Возвращает массив транзакций с суммой в заданном диапазоне от `minAmount` до `maxAmount`.
+
+    ![](./screenshots/8.png)
+
+9. `calculateTotalDebitAmount(transactions)` – Вычисляет общую сумму дебетовых транзакций.
+
+    ![](./screenshots/9.png)
+
+10. `findMostTransactionsMonth` - возвращает месяц, в котором было больше всего транзакций.
+
+    ![](./screenshots/10.png)
+
+11. `findMostDebitTransactionMonth(transactions)` – Возвращает месяц, в котором было больше дебетовых транзакций.
+
+    ![](./screenshots/11.png)
+
+12. `mostTransactionTypes` - возвращает каких транзакций больше всего.
+
+    ![](./screenshots/12.png)
+
+13. `getTransactionsBeforeDate(transactions, date)` – Возвращает массив транзакций, совершенных до указанной даты.
+
+    ![](./screenshots/13.png)    
+
+14. `findTransactionById` - возвращает транзакцию по ее уникальному идентификатору (`id`).
+
+    ![](./screenshots/14.png)
+
+15. `mapTransactionDescriptions(transactions)` – Возвращает новый массив, содержащий только описания транзакций.
+
+    ![](./screenshots/15.png)
 
 ### Ответы на контрольные вопросы:
 

@@ -136,7 +136,7 @@ const getTransactionsByMerchant = (transactions, merchantName) =>
  * @returns {number} The average transaction amount.
  */
 const calculateAverageTransactionAmount = (transactions) =>
-  calculateTotalAmount(transactions) / transactions.length;
+  calculateTotalAmount(transactions) / transactions[0]?.length;
 
 /**
  * Returns an array filtered by transaction amount range.
@@ -193,12 +193,6 @@ const findMostTransactionsMonth = (transactions) => {
 
   return getMonthName(mostTransactionsMonthNumber);
 };
-
-/**
- * Finds the month with the most debit transactions.
- * @param {Array} transactions - An array of transaction objects.
- * @returns {string} The month with the most debit transactions, as a string (e.g., "January").
- */
 
 /**
  * Finds the month with the most debit transactions.
@@ -293,6 +287,7 @@ console.log(
   'Transactions by Merchant "SuperMart":',
   getTransactionsByMerchant(transactions, "SuperMart")
 );
+console.log("Total Transactions amount:", calculateTotalAmount(transactions));
 console.log(
   "Average Transaction Amount:",
   calculateAverageTransactionAmount(transactions)
@@ -345,6 +340,7 @@ console.log(
   'Transactions by Merchant "OnlineShop":',
   getTransactionsByMerchant(transactions_2, "OnlineShop")
 );
+console.log("Total Transactions amount:", calculateTotalAmount(transactions_2));
 console.log(
   "Average Transaction Amount:",
   calculateAverageTransactionAmount(transactions_2)
@@ -400,6 +396,7 @@ console.log(
   'Transactions by Merchant "OnlineShop" (Empty):',
   getTransactionsByMerchant(transactionsEmpty, "OnlineShop")
 );
+console.log("Total Transactions amount:", calculateTotalAmount(transactionsEmpty));
 console.log(
   "Average Transaction Amount (Empty):",
   calculateAverageTransactionAmount(transactionsEmpty)

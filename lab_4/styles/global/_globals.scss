@@ -1,0 +1,26 @@
+@use "../helpers" as *;
+
+body {
+  font-size: fluid(14, 18);
+
+  color: var(--color-gray);
+  background-color: var(--color-dark);
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+:focus-visible {
+  outline: rem(2) dashed var(--color-light);
+  outline-offset: rem(4);
+  transition-duration: 0s !important;
+}

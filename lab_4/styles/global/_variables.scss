@@ -1,0 +1,23 @@
+@use "../helpers" as *;
+
+:root {
+  --color-light: #ffffff;
+
+  --color-dark: #141414;
+  --color-gray: #adadad;
+
+  --color-accent: #fbd437ec;
+  --color-red: #ff5500;
+  --color-green: #4eff37;
+
+  --container-width: #{rem(1600)};
+  --container-padding-x: #{rem(16)};
+
+  --transition-duration: 0.2s;
+
+  --border: #{rem(1)} solid var(--color-gray);
+
+  @include laptop {
+    --container-width: #{rem(1280)};
+  }
+}
